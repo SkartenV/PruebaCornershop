@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Crear menú</h2>
+<form action="add" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Crear Menú">
+</form>
+{% endblock %}
