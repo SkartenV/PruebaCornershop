@@ -3,6 +3,7 @@ from .forms import MenuForm#, OpcionForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Menu
+from django.views import generic
 
 def Add_Menu(request):
     form = MenuForm()
@@ -25,15 +26,24 @@ def Add_Menu(request):
 
     return render(request, 'add_menu.html', {'form': form})
 
+class MenuListView(generic.ListView):
+    model = Menu
+
+def Edit_Menu(request, menu_id):
+    instancia = Menu.objects.get(id=menu_id)
+    form = MenuForm(instance=instancia)
+    if request.method == "POST":
+        form = MenuForm(request.POST, instance=instancia)
+        if form.is_valid():
+            instancia = form.save(commit=False)
+            instancia.save()
+            return HttpResponseRedirect('list/')
+    return render(request, "edit_menu.html", {'form': form})
+
 def CantidadMenu(request):
     """
     Función vista para la página inicio del sitio.
     """
     # Genera contadores de algunos de los objetos principales
     num_menu = Menu.objects.all().count()
-
-    return render(
-        request,
-        'home.html',
-        context={'num_menu':num_menu},
-    )
+    return render(request, "home.html", {'num_menu': num_menu})

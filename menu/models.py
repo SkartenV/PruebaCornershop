@@ -8,7 +8,7 @@ import uuid
 # Entidad del Menú del día
 class Menu(models.Model):
 
-    Fecha = models.DateField()
+    Fecha = models.DateField(help_text="Ingrese la Fecha del Menú (AAAA-MM-DD)")
     Opcion_1 = models.CharField(max_length=200, null=True, help_text="Ingrese la Opción 1 del Menú")
     Opcion_2 = models.CharField(max_length=200, null=True, help_text="Ingrese la Opción 2 del Menú")
     Opcion_3 = models.CharField(max_length=200, null=True, help_text="Ingrese la Opción 3 del Menú")

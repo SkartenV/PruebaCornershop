@@ -22,9 +22,9 @@
       <div class="col-sm-2">
       {% block sidebar %}
       <ul class="sidebar-nav">
-          <li><a href="{% url 'home' %}">Inicio</a></li>
+          <li><a href="{% url 'inicio' %}">Inicio</a></li>
           <li><a href="{% url 'add_menu' %}">Crear Menú</a></li>
-          <li><a href="">Editar Menú</a></li>
+          <li><a href="{% url 'see_menu' %}">Editar Menú</a></li>
       </ul>
      {% endblock %}
       </div>
