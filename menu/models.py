@@ -17,6 +17,28 @@ class Menu(models.Model):
     #def __str__(self):
     #    return self.Nombre
 
+# Entidad de los Empleados
+class Empleado(models.Model):
+    
+    #UUID = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    Nombre = models.CharField(max_length=100)
+    Apellido = models.CharField(max_length=100)
+    Slack = models.CharField(max_length=200)
+    #Menu_Empleado = models.ForeignKey('Menu', on_delete=models.CASCADE)
+
+    #def __str__(self):
+    #    return '%s %s' % (Nombre, Apellido)
+
+class Eleccion_Menu(models.Model):
+
+    Opcion = models.CharField(max_length=100, help_text="Ingrese la opción del menú que desee")
+    Personalizaciones = models.CharField(max_length=300, null=True, help_text="Especifique las personalizaciones del menú si es necesario")
+    Fecha = models.DateField()
+    Eleccion_Empleado = models.ForeignKey('Empleado', on_delete=models.CASCADE)
+
+    #def __str__(self):
+    #    return self.UUID
+
 # Entidad de la Opción del Menú
 """
 class Opcion(models.Model):
@@ -29,24 +51,5 @@ class Opcion(models.Model):
     def __str__(self):
         return self.Num_Opcion
 
-# Entidad de los Empleados
-class Empleado(models.Model):
-    
-    #ID_Empleado = models.ForeignKey('Eleccion_Menu', on_delete=models.CASCADE)
-    Nombre = models.CharField(max_length=100)
-    Apellido = models.CharField(max_length=100)
-
-    def __str__(self):
-        return '%s %s' % (Nombre, Apellido)
-
 # Entidad de Elección de Menú
-class Eleccion_Menu(models.Model):
-
-    ID_Empleado = models.ForeignKey('Empleado', default="", on_delete=models.CASCADE)
-    UUID = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    Fecha = models.DateField()
-    Personalizaciones = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.UUID
 """

@@ -29,6 +29,9 @@ def Add_Menu(request):
 class MenuListView(generic.ListView):
     model = Menu
 
+class MenuDetailView(generic.DetailView):
+    model = Menu
+
 def Edit_Menu(request, menu_id):
     instancia = Menu.objects.get(id=menu_id)
     form = MenuForm(instance=instancia)
